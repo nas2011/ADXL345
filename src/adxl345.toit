@@ -128,22 +128,22 @@ class ADXL345:
   //   D7-0 D6-0 D5-Link D4-AutoSleep 
   //   D3-Measure D2-Sleep (D1 D0)-Wakeup
   set_power val/int:
-    registers.write_u8 _REG_POWER_CTL val
+    registers.write_u8 REG_POWER_CTL_ val
 
   // Reads out the current power status  
   power_status:
-    return registers.read_u8 _REG_POWER_CTL
+    return registers.read_u8 REG_POWER_CTL_
 
   // Sets the measurement read rate. See Data Rates in statics
   set_rate val/int:
-    registers.write_u8  _REG_BW_RATE val
+    registers.write_u8  REG_BW_RATE_ val
   
 
   // Reads all three axes and returns the list [x,y,z]
   read->List:
-    x := (registers.read_i16_le _REG_DATAX0).to_float * _ADXL345_MG2G_MULTIPLIER * _STANDARD_GRAVITY
-    y := (registers.read_i16_le _REG_DATAY0).to_float * _ADXL345_MG2G_MULTIPLIER * _STANDARD_GRAVITY
-    z := (registers.read_i16_le _REG_DATAZ0).to_float * _ADXL345_MG2G_MULTIPLIER * _STANDARD_GRAVITY
+    x := (registers.read_i16_le REG_DATAX0_).to_float * ADXL345_MG2G_MULTIPLIER_ * STANDARD_GRAVITY_
+    y := (registers.read_i16_le REG_DATAY0_).to_float * ADXL345_MG2G_MULTIPLIER_ * STANDARD_GRAVITY_
+    z := (registers.read_i16_le REG_DATAZ0_).to_float * ADXL345_MG2G_MULTIPLIER_ * STANDARD_GRAVITY_
     return [x,y,z]
 
 
